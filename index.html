@@ -21,7 +21,7 @@
             maxZoom: 18
         }).addTo(map);
 		// parse CSV data and create markers
-		Papa.parse("power_plants.csv?nocache=" + (new Date()).getTime(), {
+		Papa.parse("libraries.csv?nocache=" + (new Date()).getTime(), {
 			download: true,
 			header: true,
 			complete: function(results) {
@@ -29,7 +29,7 @@
 				results.data.forEach(function(row) {
 					var marker = L.marker([row.lat, row.lng]).addTo(map);
 					// customize marker popup content
-					marker.bindPopup("<b>" + row.area  + "</b><br>" + row.fuel);
+					marker.bindPopup("<b>" + row.NAME  + "</b><br>" + row.ADDRESS);
 				});
 			}
 		});
