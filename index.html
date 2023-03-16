@@ -13,10 +13,16 @@
             font-family: Roboto,Arial,sans-serif;
         }
 
-	.navbar-brand {
-	    padding-left: 10px;
-	}
+.navbar-brand {
+    padding-left: 10px;
+}
 
+        .theme-select {
+            flex-shrink: 2;
+            align-self: right;
+            max-width: 100px;
+            margin: 17px;
+        }
 	</style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +32,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
     <!-- Load Papa Parse from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
@@ -47,26 +55,36 @@
     </nav>
     <div id="mapid"></div>
     <script>
-        // initialize map
-        var map = L.map('mapid').setView([49.22584496981109, -123.05240077725696], 11);
-        // add tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18
-        }).addTo(map);
-		// parse CSV data and create markers
-		Papa.parse("libraries.csv?nocache=" + (new Date()).getTime(), {
-			download: true,
-			header: true,
-			complete: function(results) {
-				// loop through rows and create markers
-				results.data.forEach(function(row) {
-					var marker = L.marker([row.lat, row.lng]).addTo(map);
-					// customize marker popup content
-					marker.bindPopup("<b>" + row.NAME  + "</b><br>" + row.ADDRESS);
-				});
-			}
-		});
+// initialize map
+var map = L.map('mapid').setView([49.22584496981109, -123.05240077725696], 11);
+
+// add tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18
+}).addTo(map);
+
+// load parks GeoJSON data using jQuery.getJSON
+$.getJSON("parks.geojson", function(data) {
+    // create GeoJSON layer and add to map
+    var parksLayer = L.geoJSON(data).addTo(map);
+});
+
+
+// parse CSV data and create markers
+Papa.parse("libraries.csv?nocache=" + (new Date()).getTime(), {
+    download: true,
+    header: true,
+    complete: function(results) {
+        // loop through rows and create markers
+        results.data.forEach(function(row) {
+            var marker = L.marker([row.lat, row.lng]).addTo(map);
+            // customize marker popup content
+            marker.bindPopup("<b>" + row.NAME  + "</b><br>" + row.ADDRESS);
+        });
+    }
+});
+
     </script>
 </body>
 </html>
