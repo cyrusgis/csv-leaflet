@@ -37,7 +37,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-        <a class="navbar-brand" href="#">Vancouver Parks and Libraries</a>
+        <a class="navbar-brand" href="#">Vancouver Libraries</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -58,12 +58,59 @@
 // initialize map
 var map = L.map('mapid').setView([49.22584496981109, -123.05240077725696], 11);
 
-// add tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 18
-}).addTo(map);
 
+
+// create layer group for parks and libraries
+var parkGroup = L.layerGroup().addTo(map);
+var libraryGroup = L.layerGroup().addTo(map)
+
+// add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+        //basemaps
+        var Topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            maxZoom: 17,
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+        });
+
+        var Terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: 'abcd',
+            minZoom: 0,
+            maxZoom: 18,
+            ext: 'png'
+        });
+
+        var StreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+        });
+
+        var Imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        });
+
+        var Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        });
+
+        var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        });
+
+        //leaflet layer control
+        var baseMaps = {
+            'Open Street Map': OSM,
+            'Topology': Topo,
+            'Terrain': Terrain,
+            'ESRI Street': StreetMap,
+            'ESRI Imagery': Imagery,
+            'Carto Positron': Positron
+        }
 // load parks GeoJSON data using jQuery.getJSON
 $.getJSON("parks.geojson", function(data) {
     // create GeoJSON layer and add to map
@@ -76,10 +123,10 @@ $.getJSON("parks.geojson", function(data) {
                     };
                 },
 				    onEachFeature: function(feature, layer) {
-                    layer.bindPopup("<b>" + feature.properties.park_name + "</b><br>" +
-                        "<a href='" + feature.properties.park_url + "' target=”_blank”>Park website</a>");
+                    layer.bindPopup("<b>" + feature.properties.PARK_NAME + "</b><br>" +
+                        "<a href='" + feature.properties.PARK_URL + "'>Park website</a>");
 						}
-            }).addTo(map);
+            }).addTo(parkGroup);
 });
 
 
@@ -90,12 +137,21 @@ Papa.parse("libraries.csv?nocache=" + (new Date()).getTime(), {
     complete: function(results) {
         // loop through rows and create markers
         results.data.forEach(function(row) {
-            var marker = L.marker([row.lat, row.lng]).addTo(map);
+            var marker = L.marker([row.lat, row.lng]).addTo(libraryGroup);
             // customize marker popup content
             marker.bindPopup("<b>" + row.NAME  + "</b><br>" + row.ADDRESS);
         });
     }
 });
+
+var overlayMaps = {
+    "Parks": parkGroup,
+	"Libraries": libraryGroup,
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+                parkGroup.addTo(map);
+                libraryGroup.addTo(map);
 
     </script>
 </body>
