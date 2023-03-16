@@ -1,0 +1,23 @@
+﻿ADDRESS,NAME,URLLINK,Geom,Geo Local Area,lat,lng
+2985 Kingsway,Collingwood,http://www.vpl.ca/branches/details/collingwood_branch,"{""coordinates"":[-123.0426,49.2362],""type"":""Point""}",Renfrew-Collingwood,49.2362,-123.0426
+1950 Argyle Drive,Fraserview,http://www.vpl.ca/branches/details/fraserview_branch,"{""coordinates"":[-123.0669,49.2197],""type"":""Point""}",Victoria-Fraserview,49.2197,-123.0669
+870 Denman St,Joe Fortes,http://www.vpl.ca/branches/details/joe_fortes_branch,"{""coordinates"":[-123.1361,49.2899],""type"":""Point""}",West End,49.2899,-123.1361
+2112 W 42nd Av,Kerrisdale,http://www.vpl.ca/branches/details/kerrisdale_branch,"{""coordinates"":[-123.1571,49.2332],""type"":""Point""}",Kerrisdale,49.2332,-123.1571
+8386 Granville St,Marpole,http://www.vpl.ca/branches/details/marpole_branch,"{""coordinates"":[-123.14,49.2104],""type"":""Point""}",Marpole,49.2104,-123.14
+302-345 Robson St,Outreach Services,http://www.vpl.ca/branches/details/outreach_branch,"{""coordinates"":[-123.1156,49.2797],""type"":""Point""}",Downtown,49.2797,-123.1156
+7110 Kerr St,Champlain Heights,http://www.vpl.ca/branches/details/champlain_heights_branch,"{""coordinates"":[-123.0402,49.2191],""type"":""Point""}",Killarney,49.2191,-123.0402
+1455 W 10th Av,Firehall,http://www.vpl.ca/branches/details/firehall_branch,"{""coordinates"":[-123.1376,49.2629],""type"":""Point""}",Fairview,49.2629,-123.1376
+2425 Macdonald St,Kitsilano,http://www.vpl.ca/branches/details/kitsilano_branch,"{""coordinates"":[-123.1687,49.2647],""type"":""Point""}",Kitsilano,49.2647,-123.1687
+1 Kingsway,Mount Pleasant,http://www.vpl.ca/branches/details/mount_pleasant_branch,"{""coordinates"":[-123.1002,49.2643],""type"":""Point""}",Mount Pleasant,49.2643,-123.1002
+6076 Fraser St,South Hill,http://www.vpl.ca/branches/details/south_hill_branch,"{""coordinates"":[-123.0903,49.2295],""type"":""Point""}",Sunset,49.2295,-123.0903
+4480 W 10th Av,West Point Grey,http://www.vpl.ca/branches/details/west_point_grey_branch,"{""coordinates"":[-123.2086,49.2635],""type"":""Point""}",West Point Grey,49.2635,-123.2086
+2969 E 22nd Av,Renfrew,http://www.vpl.ca/branches/details/renfrew_branch,"{""coordinates"":[-123.043,49.2524],""type"":""Point""}",Renfrew-Collingwood,49.2524,-123.043
+1661 Napier St,Britannia,http://www.vpl.ca/branches/details/britannia_branch,"{""coordinates"":[-123.0738,49.2756],""type"":""Point""}",Grandview-Woodland,49.2756,-123.0738
+401 Main St,Carnegie,http://www.vpl.ca/branches/details/carnegie_branch,"{""coordinates"":[-123.1001,49.2811],""type"":""Point""}",Downtown,49.2811,-123.1001
+350 W Georgia St,Central Branch,http://www.vpl.ca/branches/details/central_library,"{""coordinates"":[-123.1156,49.2797],""type"":""Point""}",Downtown,49.2797,-123.1156
+4515 Dunbar St,Dunbar,http://www.vpl.ca/branches/details/dunbar_branch,"{""coordinates"":[-123.1856,49.246],""type"":""Point""}",Dunbar-Southlands,49.246,-123.1856
+2674 E Hastings St,Hastings,http://www.vpl.ca/branches/details/hastings_branch,"{""coordinates"":[-123.05,49.2809],""type"":""Point""}",Hastings-Sunrise,49.2809,-123.05
+1428 Cedar Cottage Mews,Kensington,http://www.vpl.ca/branches/details/kensington_branch,"{""coordinates"":[-123.0753,49.2491],""type"":""Point""}",Kensington-Cedar Cottage,49.2491,-123.0753
+191-650 W 41st Av,Oakridge,http://www.vpl.ca/branches/details/oakridge_branch,"{""coordinates"":[-123.1172,49.2327],""type"":""Point""}",Oakridge,49.2327,-123.1172
+4575 Clancy Loranger Way,Terry Salman,http://www.vpl.ca/location/terry-salman-branch,"{""coordinates"":[-123.1079,49.2438],""type"":""Point""}",Riley Park,49.2438,-123.1079
+592 E Pender St,Strathcona,http://www.vpl.ca/branches/details/strathcona_branch,"{""coordinates"":[-123.0915,49.2798],""type"":""Point""}",Strathcona,49.2798,-123.0915
