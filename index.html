@@ -117,7 +117,7 @@ $.getJSON("parks.geojson", function(data) {
                 },
 				    onEachFeature: function(feature, layer) {
                     layer.bindPopup("<b>" + feature.properties.park_name + "</b><br>" +
-                        "<a href='" + feature.properties.park_url + "'target=”_blank” attribute>Park website</a>");
+                        "<a href='" + feature.properties.park_url + "' target=”_blank”>Park website</a>");
 						}
             }).addTo(parkGroup);
 });
