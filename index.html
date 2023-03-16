@@ -74,7 +74,11 @@ $.getJSON("parks.geojson", function(data) {
                         fillColor: 'green',
                         color: 'none'
                     };
-                }
+                },
+				    onEachFeature: function(feature, layer) {
+                    layer.bindPopup("<b>" + feature.properties.PARK_NAME + "</b><br>" +
+                        "<a href='" + feature.properties.PARK_URL + "'>Park website</a>");
+						}
             }).addTo(map);
 });
 
