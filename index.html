@@ -123,8 +123,8 @@ $.getJSON("parks.geojson", function(data) {
                     };
                 },
 				    onEachFeature: function(feature, layer) {
-                    layer.bindPopup("<b>" + feature.properties.PARK_NAME + "</b><br>" +
-                        "<a href='" + feature.properties.PARK_URL + "'>Park website</a>");
+                    layer.bindPopup("<b>" + feature.properties.park_name + "</b><br>" +
+                        "<a href='" + feature.properties.park_url + "'>Park website</a>");
 						}
             }).addTo(parkGroup);
 });
