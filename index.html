@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Map with Markers from CSV</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load Leaflet from CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+    <!-- Load Papa Parse from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div id="mapid" style="width: 100%; height: 500px;"></div>
+    <script>
+        // initialize map
+        var map = L.map('mapid').setView([39.9526, -75.1652], 4);
+        // add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18
+        }).addTo(map);
+        // parse CSV data and create markers
+        Papa.parse("power_plants.csv", {
+            download: true,
+            header: true,
+            complete: function(results) {
+                // loop through rows and create markers
+                results.data.forEach(function(row) {
+                    var marker = L.marker([row.lat, row.lng]).addTo(map);
+                    // customize marker popup content
+                    marker.bindPopup("<b>" + row.area + "</b><br>" + row.fuel);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
