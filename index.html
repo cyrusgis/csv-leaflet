@@ -67,7 +67,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // load parks GeoJSON data using jQuery.getJSON
 $.getJSON("parks.geojson", function(data) {
     // create GeoJSON layer and add to map
-    var parksLayer = L.geoJSON(data).addTo(map);
+    var parksLayer = L.geoJSON(data, {
+                style: function(feature) {
+                    return {
+                        fillOpacity: 0.5,
+                        fillColor: 'green',
+                        color: 'none'
+                    };
+                }
+            }).addTo(map);
 });
 
 
